@@ -1,5 +1,7 @@
-/* This file is a working draft of the design spec for this AWS TF module. 
-    Dan Edeen, dan@dsblue.net, 2022 
+/*  Terraform to create a full and detailed (3) data center AWS deployment. 
+      Use at your own peril, and be mindful of the AWS costs of deployment. 
+      Dan Edeen, dan@dsblue.net, 2022 
+      -- design details contained herein -- 
 
 The goal of this module is to build a full, working set of data centers 
 within AWS. The text below is a working draft as I develop it. 
@@ -10,7 +12,7 @@ In AWS
 2. In each VPC, create two subnets, one /24 public, one /24 private
 
 Notes:
-    vpc-usw   US West (Oregon)  : AZs: us-west-2a, us-west-2b
+    vpc-usw   US West (Oregon)  : AZs: us-west-2a (public), us-west-2b (private)
                                   subnet 1: 10.0.0.0/24 - public
                                   subnet 2: 10.0.1.0/24 - private
                                 
