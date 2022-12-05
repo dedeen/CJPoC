@@ -1,5 +1,5 @@
 # Script to install terraform and other utilities.
-# dan@dsblue.net 
+# dan@dsblue.net  sddsdssd
 #
 # jq = JSON parser / wget = web file getter 
 function install_prerequisites() {
