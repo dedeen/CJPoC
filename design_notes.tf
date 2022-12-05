@@ -13,16 +13,19 @@ In AWS
 
 Notes:
     vpc-usw   US West (Oregon)  : AZs: us-west-2a (public), us-west-2b (private)
-                                  subnet 1: 10.0.0.0/24 - public
-                                  subnet 2: 10.0.1.0/24 - private
+                                  cidr:     10.0.0.0/16
+                                  subnet 1: 10.0.1.0/24 - public
+                                  subnet 2: 10.0.101.0/24 - private
                                 
     vpc-use   US East (Ohio)    : AZs: us-east-2a, us-east-2b
-                                  subnet 1: 172.31.0.0/24 - public
-                                  subnet 2: 172.31.1.0/24 - private
+                                  cidr:     172.31.0.0/16
+                                  subnet 1: 172.31.1.0/24 - public
+                                  subnet 2: 172.31.101.0/24 - private
                                 
     vpc-euw   Europe (Paris)    : AZs: eu-west-3a, eu-west-3b
+                                  cidr:     192.168.0.0/16
                                   subnet 1: 192.168.1.0/24 - public
-                                  subnet 2: 192.168.1.0/24 - private
+                                  subnet 2: 192.168.101.0/24 - private
 
 3. Net & security in each VPC   : NAT GW    - in each public subnet 
                                   IGW       - in each VPC
