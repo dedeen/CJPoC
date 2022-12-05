@@ -22,16 +22,30 @@ Notes:
                                   subnet 1: 192.168.1.0/24 - public
                                   subnet 2: 192.168.1.0/24 - private
 
-2. In each VPC, create two subnets, one public routable and one private 
+3. Net & security in each VPC   : NAT GW    - in each public subnet 
+                                  IGW       - in each VPC
+                                  route to I from private subnet via NAT GW
+                                  route to I from public subnet via IGW
+                                  Elastic IP on the NAT GW 
+
+
+
+4. Hosts in each VPC            : LAMP stack webserver (EC2 t2-micro) - public subnet
+                                  
 
 
 
 
-- Create two different DCs in different regions
-    (us west)
-
-
-
-
+4a. init script to run on LAMP servers
+    sudo yum update -y
+    sudo yum install -y httpd24 php72 mysql57-server php72-mysqlnd
+    sudo service httpd start 
+    sudo chkconfig httpd on
+    chkconfig --list httpd
+    >> need to add a security group to allow inbound http/tcp/80/src=custom 
+    >
+    >> retrieve public DNS address of the instance (need to do via API)
+    >> browse to the web server from the outside - should get the Apache test page 
+    
 
 */
