@@ -28,7 +28,7 @@ module "vpc" {
   cidr      = var.region1_parms["cidr"]
 
   azs       = [var.region1_parms["publ_az"],
-               var.region1_parms[i"priv_az"]]
+               var.region1_parms["priv_az"]]
   private_subnets = [var.region1_parms["priv_subnet"]]
   public_subnets  = [var.region1_parms["publ_subnet"]]
 
