@@ -21,4 +21,5 @@ variable "home_page" {
 variable "website_content_path" {
 	description	= "location of html for website"
 	type		= string
-	default		= "/htdocs
+	default		= "/htdocs"
+}
