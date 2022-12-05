@@ -1,5 +1,24 @@
 # Variables used to create multi-site deployment in AWS. 
 
+variable "region1_name" {
+	description = "name of first region"
+	type 		= string
+	default		= "vpc_usw"
+}
+
+variable "region2_name" {
+	description = "name of second region"
+	type 		= string
+	default		= "vpc_use"
+}
+
+variable "region3_name" {
+	description = "name of third region"
+	type 		= string
+	default		= "vpc_euw"
+}
+
+
 variable "aws_target_region" {
 	description	= "AWS region for website"
 	type		= string

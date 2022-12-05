@@ -10,15 +10,15 @@ In AWS
 2. In each VPC, create two subnets, one /24 public, one /24 private
 
 Notes:
-    VPC-USW   US West (Oregon)  : AZs: us-west-2a, us-west-2b
+    vpc-usw   US West (Oregon)  : AZs: us-west-2a, us-west-2b
                                   subnet 1: 10.0.0.0/24 - public
                                   subnet 2: 10.0.1.0/24 - private
                                 
-    VPC-USE   US East (Ohio)    : AZs: us-east-2a, us-east-2b
+    vpc-use   US East (Ohio)    : AZs: us-east-2a, us-east-2b
                                   subnet 1: 172.31.0.0/24 - public
                                   subnet 2: 172.31.1.0/24 - private
                                 
-    VPC-EUW   Europe (Paris)    : AZs: eu-west-3a, eu-west-3b
+    vpc-euw   Europe (Paris)    : AZs: eu-west-3a, eu-west-3b
                                   subnet 1: 192.168.1.0/24 - public
                                   subnet 2: 192.168.1.0/24 - private
 
@@ -31,21 +31,34 @@ Notes:
 
 
 4. Hosts in each VPC            : LAMP stack webserver (EC2 t2-micro) - public subnet
-                                  
+                                    AWS Linux AMI /Apache/MySQL/PHP, with Python added
 
+                                : MEAN stack webserver (EC2 t2-micro) - public subnet
+                                    MongoDB/Express.js/Node.js/Angular/js 
 
-
-
-4a. init script to run on LAMP servers
-    sudo yum update -y
-    sudo yum install -y httpd24 php72 mysql57-server php72-mysqlnd
-    sudo service httpd start 
-    sudo chkconfig httpd on
-    chkconfig --list httpd
-    >> need to add a security group to allow inbound http/tcp/80/src=custom 
-    >
-    >> retrieve public DNS address of the instance (need to do via API)
-    >> browse to the web server from the outside - should get the Apache test page 
+4a. LAMP server specifics:
+        >> AWS Linux AMI /Apache/MySQL/PHP, with Python added
+            amzn2-ami-kernel-5.10-hvm-2.0.20221103.3-x86_64-gp2ami-0b0dcb5067f052a63
+        sudo yum update -y
+        sudo yum install -y httpd24 php72 mysql57-server php72-mysqlnd
+        sudo service httpd start 
+        sudo chkconfig httpd on
+        >> chkconfig --list httpd   #confirm apache running 
+        >> need to add a security group to allow inbound http/tcp/80/src=custom, perhaps SSH also
+        >> retrieve public DNS address of the instance (need to do via API)
+        >> browse to the web server from the outside - should get the Apache test page 
     
+4b. MEAN server specifics: 
+        >> AWS Ubuntu Server 18.04 AMI (free tier) 
+            ami-061dbd1209944525c
+        ~~ fill in the details here later
+
+5. Private VPC in VPC-USW will host OSS functions: (~~ add details as built)
+    Splunk SEIM 
+    syslog server
+    DNS server
+    Palo Alto Networks Panorama v10.1 
+
+
 
 */
