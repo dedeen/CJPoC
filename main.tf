@@ -23,18 +23,19 @@ output "caller_user" {
 # Build VPC for the first DC
 module "vpc" {
   source    = "terraform-aws-modules/vpc/aws"
-  name      = "datacenter".var.region1_parms[region_loc]
+  name      = var.region1_parms["region_loc"]
 
-  cidr      = var.region1_parms[cidr]
+  cidr      = var.region1_parms["cidr"]
 
-  azs       = [var.region1_parms[publ_az],var.region1_parms[priv_az]]
-  private_subnets = [var.region1_parms[priv_subnet]]
-  public_subnets  = [var.region1_parms[publ_subnet]]
+  azs       = [var.region1_parms["publ_az"],
+               var.region1_parms[i"priv_az"]]
+  private_subnets = [var.region1_parms["priv_subnet"]]
+  public_subnets  = [var.region1_parms["publ_subnet"]]
 
   enable_ipv6 = false
 
   enable_nat_gateway      = true
-  one_nat_gateway_per_az  = true 
+  one_nat_gateway_per_az  = false
   single_nat_gateway      = true
 }
 
