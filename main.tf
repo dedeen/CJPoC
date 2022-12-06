@@ -34,7 +34,7 @@ module "vpc" {
   one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
   single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
 
-
+/*
 # Build VPC for the second DC
   source          = "terraform-aws-modules/vpc/aws"
   name            = var.region2_parms["region_loc"]
@@ -60,5 +60,6 @@ module "vpc" {
   enable_nat_gateway      = true
   one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
   single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
+  */
 }
  
