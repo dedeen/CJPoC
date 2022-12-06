@@ -1,3 +1,7 @@
+/* git add . 
+git commit -m “comment”
+git push origin main 
+*/ 
 /*  Terraform to create a full and detailed (3) data center AWS deployment. 
       Use at your own peril, and be mindful of the AWS costs of deployment. 
       Dan Edeen, dan@dsblue.net, 2022 
