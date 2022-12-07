@@ -25,7 +25,7 @@ module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
   for_each = var.regional_dc
-    name              = each.value.region_name
+    name              = each.value.region_loc
     cidr              = each.value.cidr
     azs               = [each.value.publ_az,each.value.priv_az]
     private_subnets   = [each.value.priv_subnet]
@@ -37,31 +37,3 @@ module "vpc" {
 
 }
 
-/*
-# Build VPC for the second DC
-  source          = "terraform-aws-modules/vpc/aws"
-  name            = var.region2_parms["region_loc"]
-  cidr            = var.region2_parms["cidr"]
-  azs             = [var.region2_parms["publ_az"],
-                     var.region2_parms["priv_az"]]
-  private_subnets = [var.region2_parms["priv_subnet"]]
-  public_subnets  = [var.region2_parms["publ_subnet"]]
-  enable_ipv6             = false
-  enable_nat_gateway      = true
-  one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
-  single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
- 
-# Build VPC for the third DC
-  source          = "terraform-aws-modules/vpc/aws"
-  name            = var.region3_parms["region_loc"]
-  cidr            = var.region3_parms["cidr"]
-  azs             = [var.region3_parms["publ_az"],
-                     var.region3_parms["priv_az"]]
-  private_subnets = [var.region3_parms["priv_subnet"]]
-  public_subnets  = [var.region3_parms["publ_subnet"]]
-  enable_ipv6             = false
-  enable_nat_gateway      = true
-  one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
-  single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
-  */
- 

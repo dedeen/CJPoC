@@ -34,7 +34,7 @@ variable "regional_dc" {
 			publ_az		= "eu-west-3a"
 			publ_subnet	= "192.168.1.0/24"
 			priv_az		= "eu-west-3b"
-			priv_subnet	= "191.168.101.0/24"
+			priv_subnet	= "191.168.101.0/24"       
 		}
 	}
 }
