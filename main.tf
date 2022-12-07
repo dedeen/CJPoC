@@ -19,7 +19,7 @@ output "caller_arn" {
 output "caller_user" {
   value = data.aws_caller_identity.current.user_id
 }
-
+#
 # Build VPC for the first DC
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
