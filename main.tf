@@ -20,19 +20,22 @@ output "caller_user" {
   value = data.aws_caller_identity.current.user_id
 }
 #
-# Build VPC for the first DC
+# Build the VPCs for each DC
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
-  name            = var.region1_parms["region_loc"]
-  cidr            = var.region1_parms["cidr"]
-  azs             = [var.region1_parms["publ_az"],
-                     var.region1_parms["priv_az"]]
-  private_subnets = [var.region1_parms["priv_subnet"]]
-  public_subnets  = [var.region1_parms["publ_subnet"]]
-  enable_ipv6             = false
-  enable_nat_gateway      = true
-  one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
-  single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
+
+  for_each = var.regional_dc
+    name              = each.value.region_name
+    cidr              = each.value.cidr
+    azs               = [each.publ_az,each.priv_az]
+    private_subnets   = [each.priv_subnet]
+    public_subnets    = [each.publ_subnet]
+    enable_ipv6             = false
+    enable_nat_gateway      = true
+    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
+    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
+
+}
 
 /*
 # Build VPC for the second DC
@@ -61,5 +64,4 @@ module "vpc" {
   one_nat_gateway_per_az  = false # one_nat.. = false & single_nat = true => single NATGW
   single_nat_gateway      = true  # one_nat.. = true & single_nat = false => one NATGW per AZ
   */
-}
  

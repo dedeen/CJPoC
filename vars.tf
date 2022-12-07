@@ -4,52 +4,40 @@
 	  -- variables defined in this file -- 
 */
 
-variable "region1_parms" {
-	description = "parms for first regional DC"
-	type 		= map
-	default		= {
-		region_name = "vpc_usw"
-		region_loc	= "oregon"
-		cidr		= "10.0.0.0/16"
-		publ_az		= "us-west-2a"
-		publ_subnet = "10.0.1.0/24"
-		priv_az		= "us-west-2b"
-		priv_subnet	= "10.0.101.0/24"
+variable "regional_dc" {
+	description = "Map of regional VPC parameters"
+	type		= map(any)
+
+	default = {
+		region1 = {
+			region_name = "vpc_usw"
+			region_loc	= "oregon"
+			cidr		= "10.0.0.0/16"
+			publ_az		= "us-west-2a"
+			publ_subnet = "10.0.1.0/24"
+			priv_az		= "us-west-2b"
+			priv_subnet	= "10.0.101.0/24"
+		},
+		region2 = {
+			region_name = "vpc_use"
+			region_loc	= "ohio"
+			cidr		= "172.31.0.0/16"
+			publ_az		= "us-east-2a"
+			publ_subnet	= "172.31.1.0/24"
+			priv_az		= "us-east-2b"
+			priv_subnet	= "172.31.101.0/24"
+		}, 
+		region3 = {
+			region_name = "vpc_euw"
+			region_loc	= "paris"
+			cidr		= "192.168.0.0/16"
+			publ_az		= "eu-west-3a"
+			publ_subnet	= "192.168.1.0/24"
+			priv_az		= "eu-west-3b"
+			priv_subnet	= "191.168.101.0/24"
 		}
+	}
 }
-
-variable "region2_parms" {
-	description = "parms for second regional DC"
-	type 		= map
-	default		= {
-		region_name = "vpc_use"
-		region_loc	= "ohio"
-		cidr		= "172.31.0.0/16"
-		publ_az		= "us-east-2a"
-		publ_subnet	= "172.31.1.0/24"
-		priv_az		= "us-east-2b"
-		priv_subnet	= "172.31.101.0/24"
-		}
-}
-
-variable "region3_parms" {
-	description = "parms for third regional DC"
-	type 		= map
-	default		= {
-		region_name = "vpc_euw"
-		region_loc	= "paris"
-		cidr		= "192.168.0.0/16"
-		publ_az		= "eu-west-3a"
-		publ_subnet	= "192.168.1.0/24"
-		priv_az		= "eu-west-3b"
-		priv_subnet	= "191.168.101.0/24"
-		}
-}
-
-
-
-
-
 
 
 variable "home_page" {
