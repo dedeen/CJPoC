@@ -10,7 +10,7 @@ variable "regional_dc" {
 
 	default = {
 		region1 = {
-			region 		= "us-west-2"
+			aws_region	= "us-west-2"
 			region_loc	= "oregon"
 			cidr		= "10.0.0.0/16"
 			az_list		= ["us-west-2a","us-west-2b"]
@@ -18,7 +18,7 @@ variable "regional_dc" {
 			priv_subnet	= "10.0.101.0/24"
 		},
 		region2 = {
-			region		= "us-east-2"
+			aws_region	= "us-east-2"
 			region_loc	= "ohio"
 			cidr		= "172.31.0.0/16"
 			az_list		= ["us-east-2a","us-east-2b"]
@@ -26,7 +26,7 @@ variable "regional_dc" {
 						priv_subnet	= "172.31.101.0/24"
 		}, 
 		region3 = {
-			region		= "eu-west-3"
+			aws_region	= "eu-west-3"
 			region_loc	= "paris"
 			cidr		= "192.168.0.0/16"
 			az_list		= ["eu-west-3a","eu-west-3b"]
