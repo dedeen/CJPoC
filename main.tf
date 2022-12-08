@@ -25,8 +25,9 @@ module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
   for_each = var.regional_dc
-    provider          = each.prov_alias
-    #region            = each.aws_region
+    providers = {
+      aws = aws.use2
+    }
     name              = each.value.region_loc
     cidr              = each.value.cidr
     azs               = each.value.az_list
