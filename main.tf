@@ -27,7 +27,7 @@ module "vpc" {
   for_each = var.regional_dc
     name              = each.value.region_loc
     cidr              = each.value.cidr
-    azs               = [each.value.publ_az,each.value.priv_az]
+    azs               = each.value.az_list
     private_subnets   = [each.value.priv_subnet]
     public_subnets    = [each.value.publ_subnet]
     enable_ipv6             = false

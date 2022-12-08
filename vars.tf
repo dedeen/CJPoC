@@ -10,30 +10,27 @@ variable "regional_dc" {
 
 	default = {
 		region1 = {
-			region_name = "vpc_usw"
+			region 		= "us-west-2"
 			region_loc	= "oregon"
 			cidr		= "10.0.0.0/16"
-			publ_az		= "us-west-2a"
+			az_list		= ["us-west-2a","us-west-2b"]
 			publ_subnet = "10.0.1.0/24"
-			priv_az		= "us-west-2b"
 			priv_subnet	= "10.0.101.0/24"
 		},
 		region2 = {
-			region_name = "vpc_use"
+			region		= "us-east-2"
 			region_loc	= "ohio"
 			cidr		= "172.31.0.0/16"
-			publ_az		= "us-east-2a"
+			az_list		= ["us-east-2a","us-east-2b"]
 			publ_subnet	= "172.31.1.0/24"
-			priv_az		= "us-east-2b"
-			priv_subnet	= "172.31.101.0/24"
+						priv_subnet	= "172.31.101.0/24"
 		}, 
 		region3 = {
-			region_name = "vpc_euw"
+			region		= "eu-west-3"
 			region_loc	= "paris"
 			cidr		= "192.168.0.0/16"
-			publ_az		= "eu-west-3a"
+			az_list		= ["eu-west-3a","eu-west-3b"]
 			publ_subnet	= "192.168.1.0/24"
-			priv_az		= "eu-west-3b"
 			priv_subnet	= "191.168.101.0/24"       
 		}
 	}
