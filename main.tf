@@ -26,7 +26,7 @@ module "vpc" {
 
   for_each = var.regional_dc
     providers = {
-      aws = aws.use2
+      aws = join("aws.", each.value.prov_alias)
     }
     name              = each.value.region_loc
     cidr              = each.value.cidr
@@ -39,4 +39,3 @@ module "vpc" {
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
 
 }
-
