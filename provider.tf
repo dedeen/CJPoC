@@ -1,7 +1,20 @@
 # Terraform provider for AWS
-# Tagging to verify build and destroy via AWS console
+
 provider "aws" {
-  #region = "us-west-2"
+  alias = "usw2"
+  region = "us-west-2"
+
+  default_tags {
+    tags = {
+      Environment = "dan-via-terraform"
+      Owner = "dan-via-terraform"
+    }
+  }
+}
+
+provider "aws" {
+  alias = "use2"
+  region = "us-east-2"
 
   default_tags {
     tags = {
