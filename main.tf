@@ -26,7 +26,7 @@ module "vpc" {
 
   for_each = var.regional_dc
     providers = {
-      aws = join("aws.", each.value.prov_alias)
+      aws = aws.use2  # this is parsing correctly, need to add vals from vars.tf
     }
     name              = each.value.region_loc
     cidr              = each.value.cidr
