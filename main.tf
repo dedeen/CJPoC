@@ -24,6 +24,7 @@ output "caller_user" {
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
+/*
   for_each = var.oregon_dcs
     providers = {
       aws = aws.usw2  # Set region via provider alias
@@ -38,7 +39,8 @@ module "vpc" {
     one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
 }
-
+*/
+/*
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
@@ -56,6 +58,7 @@ for_each = var.ohio_dcs
     one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
 }
+*/
 
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
