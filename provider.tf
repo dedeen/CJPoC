@@ -35,3 +35,15 @@ provider "aws" {
     }
   }
 }
+
+provider "aws" {
+  alias = "syd2"
+  region = "ap-southeast-2"
+
+  default_tags {
+    tags = {
+      Environment = "dan-via-terraform"
+      Owner = "dan-via-terraform"
+    }
+  }
+}
