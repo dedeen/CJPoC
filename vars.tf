@@ -65,7 +65,6 @@ variable "paris_dcs" {
 			publ_subnet	= "192.168.1.0/24"
 			priv_subnet	= "192.168.2.0/24"       
 		}, 
-		default = {
 		datacenter6		= {
 			#aws_region	= "eu-west-3"
 			region_dc	= "paris-dc1"
