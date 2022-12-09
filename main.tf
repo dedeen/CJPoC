@@ -6,7 +6,7 @@
 
 # Get account info from AWS in which Terraform is running 
 
-data "aws_caller_identity" "current" {}
+/*data "aws_caller_identity" "current" {}
 
 output "account_id" {
   value = data.aws_caller_identity.current.account_id
@@ -18,15 +18,15 @@ output "caller_arn" {
 
 output "caller_user" {
   value = data.aws_caller_identity.current.user_id
-}
+}  */
 #
-# Build the VPCs for each DC
+# Build the VPCs for each DataCenter
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
-  for_each = var.regional_dc
+  for_each = var.oregon_dcs
     providers = {
-      aws = aws.use2  # this is parsing correctly, need to add vals from vars.tf
+      aws = aws.usw2  # Set region via provider alias
     }
     name              = each.value.region_loc
     cidr              = each.value.cidr

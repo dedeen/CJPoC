@@ -23,3 +23,15 @@ provider "aws" {
     }
   }
 }
+
+provider "aws" {
+  alias = "euw3"
+  region = "eu-west-3"
+
+  default_tags {
+    tags = {
+      Environment = "dan-via-terraform"
+      Owner = "dan-via-terraform"
+    }
+  }
+}
