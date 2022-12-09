@@ -21,10 +21,11 @@ output "caller_user" {
 }  */
 #
 # Build the VPCs for each DataCenter
+
+/*
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
-/*
   for_each = var.oregon_dcs
     providers = {
       aws = aws.usw2  # Set region via provider alias
