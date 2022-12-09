@@ -28,7 +28,7 @@ module "vpc" {
     providers = {
       aws = aws.usw2  # Set region via provider alias
     }
-    name              = each.value.region_loc
+    name              = each.value.region_dc
     cidr              = each.value.cidr
     azs               = each.value.az_list
     private_subnets   = [each.value.priv_subnet]
