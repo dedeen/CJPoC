@@ -5,47 +5,37 @@
 echo "Building multiple TF workspaces, switching to each, then running TF VPC build in each. "
 read -p "  >>> Enter to proceed, C to abort"
 #
-terraform workspace new oregon
-terraform workspace new ohio
-terraform workspace new paris
-terraform workspace new sydney
-#
+# Set up the region array 
+region_array=(
+        "oregon"
+        "ohio"
+        "paris"
+        "sydney"
+)
+
+# Build the workspaces 
+for i in "${region_array[@]}"; do 
+        echo "$i"
+        terraform workspace new $i
+done
+
 echo "Built TF wspaces for oregon, ohio, paris, sydney. Now going to build VPC and networks elements within each."
 read -p "  >>> Enter to proceed, C to abort"
-###
-terraform workspace select oregon
-region=$(terraform workspace show)
-echo "In workspace for region: "$region
-if [[ "$region" != "oregon" ]]
-then 
-        echo "Not in correct TF workspace, aborting.";
-        exit 0
-fi
-###
-terraform workspace select ohio
-region=$(terraform workspace show)
-echo "In workspace for region: "$region
-if [[ "$region" != "ohio" ]]
-then 
-        echo "Not in correct TF workspace, aborting.";
-        exit 0
-fi
-###
-terraform workspace select paris
-region=$(terraform workspace show)
-echo "In workspace for region: "$region
-if [[ "$region" != "paris" ]]
-then 
-        echo "Not in correct TF workspace, aborting.";
-        exit 0
-fi
-###
-terraform workspace select sydney
-region=$(terraform workspace show)
-echo "In workspace for region: "$region
-if [[ "$region" != "sydney" ]]
-then 
-        echo "Not in correct TF workspace, aborting.";
-        exit 0
-fi
-###
+
+
+for i in "${region_array[@]}"; do 
+        terraform workspace select $i
+        region=$(terraform workspace show)
+        if [[ "$region" != "$i" ]]
+        then 
+                echo "Not in correct TF workspace, aborting.";
+                exit 0
+        fi
+        #
+        #Workspace is correct, copy up main.tf for this region and build the VPC
+        subdir="./""$i""_vpc"
+        fname="main.""$i"
+        echo $subdir
+        echo $fname
+        cp $subdir/$fname .
+done
