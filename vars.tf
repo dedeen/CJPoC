@@ -33,7 +33,7 @@ variable "ohio_dcs" {
 	type		= map(any)
 
 	default = {
-		datacenter1 	= {
+		datacenter3 	= {
 			#aws_region	= "us-east-2"
 			region_dc	= "ohio-dc1"
 			cidr		= "10.0.0.0/16"
@@ -41,7 +41,7 @@ variable "ohio_dcs" {
 			publ_subnet = "10.0.1.0/24"
 			priv_subnet	= "10.0.101.0/24"
 		}, 
-		datacenter2 	= {
+		datacenter4 	= {
 			#aws_region	= "us-east-2"
 			region_dc	= "ohio-dc2"
 			cidr		= "172.31.0.0/16"
@@ -57,13 +57,22 @@ variable "paris_dcs" {
 	type		= map(any)
 
 	default = {
-		datacenter1		= {
+		datacenter5		= {
 			#aws_region	= "eu-west-3"
 			region_dc	= "paris-dc1"
 			cidr		= "192.168.0.0/16"
 			az_list		= ["eu-west-3a","eu-west-3b"]
 			publ_subnet	= "192.168.1.0/24"
 			priv_subnet	= "192.168.2.0/24"       
+		}, 
+		default = {
+		datacenter6		= {
+			#aws_region	= "eu-west-3"
+			region_dc	= "paris-dc1"
+			cidr		= "192.168.0.0/16"
+			az_list		= ["eu-west-3a","eu-west-3b"]
+			publ_subnet	= "192.168.3.0/24"
+			priv_subnet	= "192.168.4.0/24"       
 		}  
 	}
 }
