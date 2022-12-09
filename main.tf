@@ -37,5 +37,41 @@ module "vpc" {
     enable_nat_gateway      = true
     one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
-
 }
+
+module "vpc" {
+  source          = "terraform-aws-modules/vpc/aws"
+
+for_each = var.ohio_dcs
+    providers = {
+      aws = aws.use2  # Set region via provider alias
+    }
+    name              = each.value.region_dc
+    cidr              = each.value.cidr
+    azs               = each.value.az_list
+    private_subnets   = [each.value.priv_subnet]
+    public_subnets    = [each.value.publ_subnet]
+    enable_ipv6             = false
+    enable_nat_gateway      = true
+    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
+    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
+}
+
+module "vpc" {
+  source          = "terraform-aws-modules/vpc/aws"
+
+for_each = var.paris_dcs
+    providers = {
+      aws = aws.euw3  # Set region via provider alias
+    }
+    name              = each.value.region_dc
+    cidr              = each.value.cidr
+    azs               = each.value.az_list
+    private_subnets   = [each.value.priv_subnet]
+    public_subnets    = [each.value.publ_subnet]
+    enable_ipv6             = false
+    enable_nat_gateway      = true
+    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
+    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
+}
+
