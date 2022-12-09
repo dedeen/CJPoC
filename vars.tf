@@ -63,7 +63,7 @@ variable "paris_dcs" {
 			cidr		= "192.168.0.0/16"
 			az_list		= ["eu-west-3a","eu-west-3b"]
 			publ_subnet	= "192.168.1.0/24"
-			priv_subnet	= "191.168.101.0/24"       
+			priv_subnet	= "192.168.2.0/24"       
 		}  
 	}
 }
