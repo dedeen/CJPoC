@@ -16,7 +16,7 @@ variable "oregon_dcs" {
 			az_list		= ["us-west-2a","us-west-2b"]
 			publ_subnet = "10.0.1.0/24"
 			priv_subnet	= "10.0.101.0/24"
-		}, 
+		},   
 		datacenter2 = {
 			#aws_region	= "us-west-2"
 			region_dc	= "oregon-dc2"
@@ -25,7 +25,7 @@ variable "oregon_dcs" {
 			publ_subnet	= "172.31.1.0/24"
 			priv_subnet	= "172.31.101.0/24"
 		}
-	}
+	}   
 }
 
 variable "ohio_dcs" {
