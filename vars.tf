@@ -9,7 +9,7 @@ variable "regional_dc" {
 	type		= map(any)
 
 	default = {
-		region1 = {
+/*		region1 = {
 			aws_region	= "us-west-2"
 			prov_alias	= "usw2"
 			region_loc	= "oregon"
@@ -17,7 +17,7 @@ variable "regional_dc" {
 			az_list		= ["us-west-2a","us-west-2b"]
 			publ_subnet = "10.0.1.0/24"
 			priv_subnet	= "10.0.101.0/24"
-		},
+		}, */
 		region2 = {
 			aws_region	= "us-east-2"
 			prov_alias	= "use2"
