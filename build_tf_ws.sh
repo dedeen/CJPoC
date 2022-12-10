@@ -48,6 +48,11 @@ for i in "${region_array[@]}"; do
         #######################################################################################
         terraform init
         terraform plan
+        read -p "  >>> Going to commit without prompt next"
+        terraform apply -auto-approve
+        read -p "  >>> Copying TF state to vpc_main_files"
+        ## -> start  here Saturday  
+
         read -p "  >>> Debug pause"
 
 
