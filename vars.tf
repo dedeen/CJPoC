@@ -12,7 +12,7 @@ variable "oregon_dcs" {
 		datacenter1 = {
 			#aws_region	= "us-west-2"
 			region_dc	= "oregon-dc1"
-			cidr		= "10.0.0.0/16"
+			cidr		= "192.168.0.0/16"
 			az_list		= ["us-west-2a","us-west-2b"]
 			publ_subnet	= "192.168.1.0/24"
 			priv_subnet	= "192.168.2.0/24"       
@@ -22,8 +22,8 @@ variable "oregon_dcs" {
 			region_dc	= "oregon-dc2"
 			cidr		= "172.31.0.0/16"
 			az_list		= ["us-west-2a","us-west-2b"]
-			publ_subnet	= "192.168.1.0/24"
-			priv_subnet	= "192.168.2.0/24"       
+			publ_subnet	= "192.168.3.0/24"
+			priv_subnet	= "192.168.4.0/24"       
 		}
 	}   
 }
@@ -36,17 +36,17 @@ variable "ohio_dcs" {
 		datacenter3 	= {
 			#aws_region	= "us-east-2"
 			region_dc	= "ohio-dc3"
-			cidr		= "10.0.0.0/16"
+			cidr		= "192.168.0.0/16"
 			az_list		= ["us-east-2a","us-east-2b"]
 			publ_subnet	= "192.168.1.0/24"
 			priv_subnet	= "192.168.2.0/24"       		}, 
 		datacenter4 	= {
 			#aws_region	= "us-east-2"
 			region_dc	= "ohio-dc4"
-			cidr		= "172.31.0.0/16"
+			cidr		= "192.168.0.0/16"
 			az_list		= ["us-east-2a","us-east-2b"]
-			publ_subnet	= "192.168.1.0/24"
-			priv_subnet	= "192.168.2.0/24"       
+			publ_subnet	= "192.168.3.0/24"
+			priv_subnet	= "192.168.4.0/24"       
 		}
 	}
 }
