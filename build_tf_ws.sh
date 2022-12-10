@@ -42,4 +42,13 @@ for i in "${region_array[@]}"; do
         echo $fname
         cp $subdir/$fname ./"main.tf"
         read -p "  >>> Debug pause"
+
+        #######################################################################################
+        #  Here we go, will build a VPC in each region in an individual workspace per region. 
+        #######################################################################################
+        terraform init
+        terraform plan
+        read -p "  >>> Debug pause"
+
+
 done
