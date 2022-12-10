@@ -1,3 +1,4 @@
+# --main.tf.oregon-
 /*  Terraform to create multiple data centers on AWS in different regions. 
       Due to the structure of providers in Terraform, you cannot easily build
       in multiple regions from the same script, even with provider aliases. 
