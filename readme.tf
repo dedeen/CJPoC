@@ -2,40 +2,32 @@
 git commit -m “comment”
 git push origin main 
 */ 
-/*  Terraform to create a full and detailed (3) data center AWS deployment. 
+/*  This repo contains Terraform scripts to create multiple DCs (data centers==VPCs) in 
+    different regions. It is currently building 8 VPCs, two each in Oregon, Ohio, Paris, and 
+    Sydney. 
       Use at your own peril, and be mindful of the AWS costs of deployment. 
       Dan Edeen, dan@dsblue.net, 2022 
-      -- design details contained herein -- 
+      -- design details contained herein, and is a work in progress subject to change. -- 
 
-The goal of this module is to build a full, working set of data centers 
-within AWS. The text below is a working draft as I develop it. 
+Regions used: 
+    usw2   US West (Oregon)  : AZs: us-west-2a 
+    use2   US East (Ohio)    : AZs: us-east-2a
+    euw3   Europe (Paris)    : AZs: eu-west-3a
+    syd2   AsiaPac(Sydney)   : AZs: ap-southeast-2b
 
-In AWS
-=================
-1. Create three VPCs in different regions, each in two AZs
-2. In each VPC, create two subnets, one /24 public, one /24 private
+VPCs specifics (2 per region, following this pattern):
+    First VPC:
+    cidr:     192.168.0.0/16
+    subnet 1: 192.168.1.0/24 - public
+    subnet 2: 192.168.2.0/24 - private
+    
+    Second VPC:
+    cidr:     192.168.0.0/16
+    subnet 1: 192.168.3.0/24 - public
+    subnet 2: 192.168.4.0/24 - private
 
-Notes:
-    vpc-usw   US West (Oregon)  : AZs: us-west-2a (public), us-west-2b (private)
-                                  cidr:     10.0.0.0/16
-                                  subnet 1: 10.0.1.0/24 - public
-                                  subnet 2: 10.0.101.0/24 - private
-                                
-    vpc-use   US East (Ohio)    : AZs: us-east-2a, us-east-2b
-                                  cidr:     172.31.0.0/16
-                                  subnet 1: 172.31.1.0/24 - public
-                                  subnet 2: 172.31.101.0/24 - private
-                                
-    vpc-euw   Europe (Paris)    : AZs: eu-west-3a, eu-west-3b
-                                  cidr:     192.168.0.0/16
-                                  subnet 1: 192.168.1.0/24 - public
-                                  subnet 2: 192.168.101.0/24 - private
+    ... same pattern for subsequent VPCs/Regions. 
 
-3. Net & security in each VPC   : NAT GW    - in each public subnet 
-                                  IGW       - in each VPC
-                                  route to I from private subnet via NAT GW
-                                  route to I from public subnet via IGW
-                                  Elastic IP on the NAT GW 
 
 
 
