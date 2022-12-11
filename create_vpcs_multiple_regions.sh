@@ -3,6 +3,8 @@
 #     multiple TF workspaces, with TF state created in each at runtime, and multiple
 #     main.tf files, one for each region. 
 #
+# Set up some parms for script 
+
 echo "  >>> Building VPCs in multiple regions." 
 read -p "  >>> Enter to proceed, Ctrl-C to abort."
 #
