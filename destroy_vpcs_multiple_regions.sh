@@ -41,10 +41,11 @@ for i in "${region_array[@]}"; do
         terraform init
         terraform plan
         read -p "  >>> Going to destroy without prompt next"
-        terraform apply -auto-approve
+        terraform destroy -auto-approve
         read -p "  >>> Debug pause"
 
 done
-read -p "  >>> All resources should have been destroyed now."
-# should now delete the previously saved state files. 
+read -p "  >>> All resources destroyed, deleting cached tfstate files from create script."
+rm -r ./tfstate_cache/*
+#
 
