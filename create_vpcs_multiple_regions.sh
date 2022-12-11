@@ -1,9 +1,8 @@
 ## Script to set up 4 TF workspaces, switch to each in turn, and run 
-#     AWS VPC build in each. This is done to work around the top level 
-#     architecture of providers in TF being singular per workspace.
-#     using terraform provider(s) alias functionality.  
+#     AWS VPC build in each. This is done to work around the top levl 
+#     architecture of providers in TF being singular per workspace. 
 #
-echo "Destroying the VPCs built in multiple regions by the build_vpcs.. script."
+echo "Destroying resources from multiple TF workspaces."
 read -p "  >>> Enter to proceed, C to abort"
 #
 # Set up the region array 
@@ -14,7 +13,13 @@ region_array=(
         "sydney"
 )
 
-echo "Going to go through each workspace, copy in the main.tf for the workspace, and destroy all resources previously built."
+## Build the workspaces 
+for i in "${region_array[@]}"; do 
+        echo "$i"
+        terraform workspace new $i
+done
+
+echo "Verified expected TF wspaces for oregon, ohio, paris, sydney. Now going to build VPC and networks elements within each."
 read -p "  >>> Enter to proceed, C to abort"
 
 for i in "${region_array[@]}"; do 
@@ -43,10 +48,11 @@ for i in "${region_array[@]}"; do
         #######################################################################################
         terraform init
         terraform plan
-        read -p "  >>> Going to destroy without prompt next"
+        read -p "  >>> Going to commit without prompt next"
         terraform apply -auto-approve
-        read -p "  >>> Debug pause"
-
+                
 done
-read -p "  >>> All resources should have been destroyed now."
-
+read -p "  >>> Copying TF state to vpc_main_files"
+# These are the terraform state file for each workspace, keeping backup for recovery from corruption, etc. 
+cp -r terraform.tfstate.d/ tfstate_cache/
+#
