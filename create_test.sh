@@ -1,3 +1,4 @@
+#!/bin/bash
 ## This script set builds AWS VPCs in multiple regions. TF has an architectural
 #     limit of one AWS provider per root execution space. To work around this, we use
 #     multiple TF workspaces, with TF state created in each at runtime, and multiple
