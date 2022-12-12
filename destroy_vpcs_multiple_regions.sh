@@ -58,7 +58,7 @@ for i in "${region_array[@]}"; do
         terraform destroy -auto-approve
 
 done
-read -p "  ... All resources destroyed, deleting cached tfstate files from create script."
+echo "  ... All resources destroyed, deleting cached tfstate files from create script."
 rm -r ./tfstate_cache/*
 #
 
