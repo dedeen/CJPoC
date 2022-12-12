@@ -11,6 +11,8 @@ while getopts :v opt; do
         esac
 done
 
+echo "  ... Script started: $date"
+
 if $verbose; then 
         echo "  ... Verbose / debug mode enabled."
         read -p "  >>> Building VPCs in multiple regions, Enter to continue, Ctrl-C to abort."
@@ -69,4 +71,5 @@ done
 echo "  ... Copying TF state to vpc_main_files"
 # These are the terraform state file for each workspace, keeping backup for recovery from corruption, etc. 
 cp -r terraform.tfstate.d/ tfstate_cache/
+echo "  ... Script completed: $date"
 #

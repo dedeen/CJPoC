@@ -9,6 +9,8 @@ while getopts :v opt; do
         esac
 done
 
+echo "  ... Script started: $date"
+
 if $verbose; then 
         echo "  ... Verbose / debug mode enabled."
         read -p "Destroying the VPCs and resources. Enter to continue, Ctrl-C to abort."
@@ -62,5 +64,6 @@ for i in "${region_array[@]}"; do
 done
 echo "  ... All resources destroyed, deleting cached tfstate files from create script."
 rm -r ./tfstate_cache/*
+echo "  ... Script completed: $date"
 #
 
