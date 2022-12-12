@@ -12,7 +12,10 @@ while getopts :v opt; do
 done
 
 if $verbose; then 
-        read -p "Building VPCs in multiple regions, Ctrl-C to abort."
+        echo "  ... Verbose / debug mode enabled."
+        read -p "  >>> Building VPCs in multiple regions, Enter to continue, Ctrl-C to abort."
+fi
+
 # Set up the region array 
 region_array=(
         "oregon"
@@ -26,8 +29,7 @@ for i in "${region_array[@]}"; do
         terraform workspace new $i
 done
 
-echo "  >>> Workspaces created, will start building by region."
-read -p "  >>> Enter to proceed, Ctrl-C to abort."
+echo "  ... Workspaces created, will start building by region."
 
 for i in "${region_array[@]}"; do 
         terraform workspace select $i
@@ -55,11 +57,14 @@ for i in "${region_array[@]}"; do
         #######################################################################################
         terraform init
         terraform plan
-        read -p "  >>> Going to build next without prompt. Ctrl-C to abort. commit without prompt next"
+        
+        if $verbose; then 
+        read -p "  >>> Going to build infra now, without prompt. Enter to continue, Ctrl-C to abort."
         terraform apply -auto-approve
-                
+        fi
+                        
 done
-read -p "  >>> Copying TF state to vpc_main_files"
+echo "  ... Copying TF state to vpc_main_files"
 # These are the terraform state file for each workspace, keeping backup for recovery from corruption, etc. 
 cp -r terraform.tfstate.d/ tfstate_cache/
 #

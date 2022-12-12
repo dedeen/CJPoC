@@ -10,7 +10,8 @@ function install_prerequisites() {
 # Check if Terraform installed, if not download and install. 
 function install_terraform() {
     # Hardcoding version tested with
-    TERRAFORM_VERSION="1.3.2"
+    #TERRAFORM_VERSION="1.3.2"
+    TERRAFORM_VERSION="1.3.6"
 
     # Check if terraform is already installed and display the version of terraform as installed
     [[ -f ${HOME}/bin/terraform ]] && echo "`${HOME}/bin/terraform version` already installed at ${HOME}/bin/terraform" && return 0

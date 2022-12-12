@@ -1,7 +1,19 @@
-## Destroy vpcs and resources in multiple regions via terraform workspaces.   
+## Destroy vpcs and resources in multiple regions via terraform workspaces. This is a companion script 
+#       to that which builds the resources (same repo).
 #
-echo "Destroying the VPCs built in multiple regions by the build_vpcs.. script."
-read -p "  >>> Enter to proceed, C to abort"
+# Set up some verbosity from -v flag  
+verbose=false      #/default, pass in verbose if debug prompts desired
+while getopts :v opt; do
+        case $opt in
+                v) verbose=true
+        esac
+done
+
+if $verbose; then 
+        echo "  ... Verbose / debug mode enabled."
+        read -p "Destroying the VPCs and resources. Enter to continue, Ctrl-C to abort."
+fi
+
 #
 # Set up the region array 
 region_array=(
@@ -11,8 +23,7 @@ region_array=(
         "sydney"
 )
 
-echo "Going to go through each workspace, copy in the main.tf for the workspace, and destroy all resources previously built."
-read -p "  >>> Enter to proceed, C to abort"
+echo "  ... Looping through each workspace, coping in the main.tf for the workspace, and destroy all resources."
 
 for i in "${region_array[@]}"; do 
         terraform workspace select $i
@@ -40,12 +51,14 @@ for i in "${region_array[@]}"; do
         #######################################################################################
         terraform init
         terraform plan
-        read -p "  >>> Going to destroy without prompt next"
+
+        if $verbose; then 
+        read -p "  >>> Going to destroy the infra now, without prompt. Enter to continue, Ctrl-C to abort."
         terraform destroy -auto-approve
-        read -p "  >>> Debug pause"
+        fi 
 
 done
-read -p "  >>> All resources destroyed, deleting cached tfstate files from create script."
+read -p "  ... All resources destroyed, deleting cached tfstate files from create script."
 rm -r ./tfstate_cache/*
 #
 
