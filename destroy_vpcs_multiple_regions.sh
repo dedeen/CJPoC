@@ -54,8 +54,8 @@ for i in "${region_array[@]}"; do
 
         if $verbose; then 
         read -p "  >>> Going to destroy the infra now, without prompt. Enter to continue, Ctrl-C to abort."
-        terraform destroy 
         fi 
+        terraform destroy 
 
 done
 read -p "  ... All resources destroyed, deleting cached tfstate files from create script."
