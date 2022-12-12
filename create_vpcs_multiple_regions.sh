@@ -62,8 +62,8 @@ for i in "${region_array[@]}"; do
         
         if $verbose; then 
         read -p "  >>> Going to build infra now, without prompt. Enter to continue, Ctrl-C to abort."
-        terraform apply -auto-approve
         fi
+        terraform apply -auto-approve
                         
 done
 echo "  ... Copying TF state to vpc_main_files"
