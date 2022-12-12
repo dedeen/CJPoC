@@ -44,7 +44,7 @@ for i in "${region_array[@]}"; do
         echo $subdir
         echo $fname
         cp $subdir/$fname ./"main.tf"
-        read -p "  >>> Debug pause"
+        #read -p "  >>> Debug pause"
 
         #######################################################################################
         #  Here we go, will build a VPC in each region in an individual workspace per region. 
@@ -54,7 +54,7 @@ for i in "${region_array[@]}"; do
 
         if $verbose; then 
         read -p "  >>> Going to destroy the infra now, without prompt. Enter to continue, Ctrl-C to abort."
-        terraform destroy -auto-approve
+        terraform destroy 
         fi 
 
 done
