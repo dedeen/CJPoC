@@ -14,6 +14,8 @@ done
 if $verbose; then 
         echo "  ... Verbose / debug mode enabled."
         read -p "  >>> Building VPCs in multiple regions, Enter to continue, Ctrl-C to abort."
+        else 
+        echo "  ... Verbose / debug mode disabled."
 fi
 
 # Set up the region array 

@@ -12,6 +12,8 @@ done
 if $verbose; then 
         echo "  ... Verbose / debug mode enabled."
         read -p "Destroying the VPCs and resources. Enter to continue, Ctrl-C to abort."
+        else 
+        echo "  ... Verbose / debug mode disabled."
 fi
 
 #
