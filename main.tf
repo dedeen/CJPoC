@@ -1,11 +1,9 @@
-# --main.tf.oregon-
-/*  Terraform to create multiple data centers on AWS in different regions. 
-      Due to the structure of providers in Terraform, you cannot easily build
-      in multiple regions from the same script, even with provider aliases. 
-      To work around this I am using TF workspaces, and executing main.tf 
-      in each after renaming the applicable main.region file for each region. 
-
-      Use at your own peril, and be mindful of the AWS costs of deployment. 
+/*  Terraform to create a single VPC in specified region, using vpc module: 
+      - Two subnets, one public and one private 
+      - NAT GW, IGW with EIP, routes needed 
+      
+      Use at your own peril, and be mindful of the AWS costs of 
+      building this environment.  
       Dan Edeen, dan@dsblue.net, 2022 
 	  -- 
 */
@@ -31,61 +29,3 @@ module "vpc" {
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
 }
 
-/*
-module "vpc" {
-  source          = "terraform-aws-modules/vpc/aws"
-
-for_each = var.ohio_dcs
-    providers = {
-      aws = aws.use2  # Set region via provider alias
-    }
-    name              = each.value.region_dc
-    cidr              = each.value.cidr
-    azs               = each.value.az_list
-    private_subnets   = [each.value.priv_subnet]
-    public_subnets    = [each.value.publ_subnet]
-    enable_ipv6             = false
-    enable_nat_gateway      = true
-    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
-    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
-}
-*/
-
-/*
-module "vpc" {
-  source          = "terraform-aws-modules/vpc/aws"
-
-for_each = var.paris_dcs
-    providers = {
-      aws = aws.euw3  # Set region via provider alias
-    }
-    name              = each.value.region_dc
-    cidr              = each.value.cidr
-    azs               = each.value.az_list
-    private_subnets   = [each.value.priv_subnet]
-    public_subnets    = [each.value.publ_subnet]
-    enable_ipv6             = false
-    enable_nat_gateway      = true
-    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
-    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
-}
-*/
-/*
-module "vpc" {
-  source          = "terraform-aws-modules/vpc/aws"
-
-for_each = var.sydney_dcs
-    providers = {
-      aws = aws.syd2  # Set region via provider alias
-    }
-    name              = each.value.region_dc
-    cidr              = each.value.cidr
-    azs               = each.value.az_list
-    private_subnets   = [each.value.priv_subnet]
-    public_subnets    = [each.value.publ_subnet]
-    enable_ipv6             = false
-    enable_nat_gateway      = true
-    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
-    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
-}
-*/
