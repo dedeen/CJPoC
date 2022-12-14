@@ -1,3 +1,4 @@
+# --main.tf.oregon-
 /*  Terraform to create multiple data centers on AWS in different regions. 
       Due to the structure of providers in Terraform, you cannot easily build
       in multiple regions from the same script, even with provider aliases. 
@@ -11,7 +12,7 @@
 #
 # Build the VPCs for each DataCenter
 
-/*
+
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
@@ -29,7 +30,7 @@ module "vpc" {
     one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
     single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
 }
-*/
+
 /*
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
