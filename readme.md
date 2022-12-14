@@ -1,14 +1,26 @@
 # IaC Scripts for AWS
 This repo contains two sets of scripts to create resources in AWS, one set using CloudFormation, and one set using Terraform with AWS modules. 
-
 Dan Edeen, dan@dsblue.net, 2022 
 
-## AWS CloudShell Scripts
-Text here
+## Overview
+The functionality realized by these script sets is as follows: 
+*  Create (1) VPC in the AWS Region specified. 
+    * Two subnets (public and private)
+    * NAT gateway for private subnet to Internet 
+    * IGW for public subnet to Internet
+    * EIP associated with IGW
+    * Routing tables and assocations for VPC
+    
+*  Create (1) EC2 in each subnet 
+*  Create (1) API GW
+*  Create (1) RDS 
+*  Create a lambda function
 
-## Terraform/AWS Scripts 
-Test Here
+----------------------------------
 
+- fds
+-   dsfsdf
+-     dfdf
 ## Prerequisites
 There are a a few steps to set up the environment: 
 * Log in to your AWS environment and launch a CloudShell terminal window. 
