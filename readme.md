@@ -1,7 +1,5 @@
 # IaC Scripts for AWS
-This repo contains two sets of scripts to create resources in AWS. 
-1. CloudFormation Scripts
-2. Terraform/AWS Scripts 
+This repo contains two sets of scripts to create resources in AWS, one set using CloudFormation, and one set using Terraform with AWS modules. 
 
 Dan Edeen, dan@dsblue.net, 2022 
 
