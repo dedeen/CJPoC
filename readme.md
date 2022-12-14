@@ -1,7 +1,14 @@
-# Terraform Scripts for AWS
-This repo contains scripts that I've created to build resources in AWS. 
+# IaC Scripts for AWS
+This repo contains two sets of scripts that I've created to build resources in AWS. 
 
 Dan Edeen, dan@dsblue.net, 2022 
+
+## AWS CloudShell Scripts
+Text here
+
+## Terraform/AWS Scripts 
+Test Here
+
 ## Prerequisites
 There are a a few steps to set up the environment: 
 * Log in to your AWS environment and launch a CloudShell terminal window. 
