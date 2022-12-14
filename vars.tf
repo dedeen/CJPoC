@@ -23,7 +23,7 @@ variable "oregon_dcs" {
 			az_list		= ["us-west-2a","us-west-2b"]
 			publ_subnet	= "192.168.3.0/24"
 			priv_subnet	= "192.168.4.0/24"       
-		}
+		}	
 	}   
 }
 
