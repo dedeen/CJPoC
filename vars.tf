@@ -3,13 +3,12 @@
 */
 
 
-variable "oregon_dcs" {
+variable "new_vpcs" {
 	description = "DC parms for Oregon VPCs"
 	type		= map(any)
 
 	default = {
 		datacenter1 = {
-			#aws_region	= "us-west-2"
 			region_dc	= "oregon-dc1"
 			cidr		= "192.168.0.0/16"
 			az_list		= ["us-west-2a","us-west-2b"]
@@ -17,7 +16,6 @@ variable "oregon_dcs" {
 			priv_subnet	= "192.168.2.0/24"       
 		},   
 		datacenter2 = {
-			#aws_region	= "us-west-2"
 			region_dc	= "oregon-dc2"
 			cidr		= "192.168.0.0/16"
 			az_list		= ["us-west-2a","us-west-2b"]

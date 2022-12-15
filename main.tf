@@ -14,7 +14,7 @@
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
-  for_each = var.oregon_dcs
+  for_each = var.new_vpcs
     providers = {
       aws = aws.usw2  # Set region via provider alias
     }
