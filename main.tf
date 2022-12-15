@@ -8,9 +8,7 @@
 	  -- 
 */
 #
-# Build the VPCs for each DataCenter
-
-
+# Build VPCs for DataCenters
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
 
@@ -23,9 +21,10 @@ module "vpc" {
     azs               = each.value.az_list
     private_subnets   = [each.value.priv_subnet]
     public_subnets    = [each.value.publ_subnet]
+    intra_subnets     = [each.value.intra_subnets]
     enable_ipv6             = false
     enable_nat_gateway      = true
-    one_nat_gateway_per_az  = false # one_nat=false&single_nat=true =>single NATGW
-    single_nat_gateway      = true  # one_nat=true&single_nat=false => one NATGW per AZ
+    one_nat_gateway_per_az  = false 
+    single_nat_gateway      = true  
 }
 
