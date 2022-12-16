@@ -11,6 +11,10 @@ The functionality realized by these script sets is as follows:
     * EIP associated with IGW
     * Routing tables and assocations for VPC
     
+*  Generate AWS key pair (RSA), and download into the terraform execution directory. 
+    * File: terraform_key_pair.pem
+    * You must save this file to access resources built next. 
+    
 *  Create (1) EC2 in each subnet 
 *  Create (1) API GW
 *  Create (1) RDS 
