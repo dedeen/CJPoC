@@ -4,8 +4,8 @@
       
       Use at your own peril, and be mindful of the AWS costs of 
       building this environment.  
-      Dan Edeen, dan@dsblue.net, 2022 
-	  -- 
+        -- Dan Edeen, dan@dsblue.net, 2022  --
+	   
 */
 #
 # Build VPCs for DataCenters
