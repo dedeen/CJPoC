@@ -33,24 +33,6 @@ output "vpc_dc1-vpc_igw_arn" {
 output "vpc_dc1-vpc_nat_public_ips" {
   value = module.vpc["datacenter1"].nat_public_ips
 }
-/*
-#
-output "vpc_dc2-vpc_id" {
-  value = module.vpc["datacenter2"].vpc_id
+output "key_pair_file" {
+  value = "${var.generated_key_name}'${random_id.getrandom.hex}'.pem"
 }
-output "vpc_dc2-vpc_arn" {
-  value = module.vpc["datacenter2"].vpc_arn
-}
-output "vpc_dc2-vpc_cidr" {
-  value = module.vpc["datacenter2"].vpc_cidr_block
-}
-output "vpc_dc2-vpc_private_snet0" {
-  value = module.vpc["datacenter2"].private_subnets[0]
-}
-output "vpc_dc2-vpc_public_snet0" {
-  value = module.vpc["datacenter2"].public_subnets[0]
-}
-output "vpc_dc2-vpc_intra_snet0" {
-  value = module.vpc["datacenter2"].intra_subnets[0]
-}
-*/
