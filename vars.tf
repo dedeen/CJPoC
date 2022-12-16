@@ -2,7 +2,7 @@
       Dan Edeen, dan@dsblue.net, 2022 
 */
 
-
+# VPC parms, can build mutiple by passing in via this map 
 variable "new_vpcs" {
 	description = "DC parms for Oregon VPCs"
 	type		= map(any)
@@ -27,6 +27,9 @@ variable "new_vpcs" {
 		}   a*/	
 	}   
 }
+
+# EC2 parms to build from
+variable ec2_linuxami = "ami-094125af156557ca2"
 
 
 
