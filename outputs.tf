@@ -34,5 +34,5 @@ output "vpc_dc1-vpc_nat_public_ips" {
   value = module.vpc["datacenter1"].nat_public_ips
 }
 output "key_pair_file" {
-  value = "${var.generated_key_name}'${random_id.getrandom.hex}'.pem"
+  value = local.keypair_name
 }
