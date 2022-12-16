@@ -38,6 +38,7 @@ resource "aws_instance" "ec2-public-subnet" {
     source_dest_check   = false
     tags = {
           Owner = "dan-via-terraform"
+	  Name 	- "ec2-inst1-public"
     }
 }
 	
