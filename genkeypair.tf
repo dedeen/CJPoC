@@ -32,9 +32,11 @@ resource "tls_private_key" "dev_key" {
  
 ## Create a AWS key pair using the ssh key generated previously
 resource "aws_key_pair" "generated_key" {
-  #key_name  = var.generated_key_name 
   key_name   = local.keypair_name
   public_key = tls_private_key.dev_key.public_key_openssh
+  tags = {
+    Owner = "dan-via-terraform"
+  }
  
   provisioner "local-exec" {    # Generate key-pair.pem" in current directory
     command = <<-EOT
