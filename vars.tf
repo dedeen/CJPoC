@@ -27,9 +27,7 @@ variable "new_vpcs" {
 		}   a*/	
 	}   
 }
-
-# EC2 parms to build from
-variable ec2_linuxami = "ami-094125af156557ca2"
+##
 
 
 
