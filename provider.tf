@@ -8,7 +8,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = "dan-via-terraform"
+      #Environment = "dan-via-terraform"
       Owner = "dan-via-terraform"
     }
   }
