@@ -25,3 +25,7 @@ resource "aws_key_pair" "generated_key" {
     EOT
   }
 }
+
+output "key_pair_file" {
+  value = "${var.generated_key_name}.pem"
+}
