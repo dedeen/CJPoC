@@ -1,5 +1,16 @@
-#  Creat AWS key pair 
+#  Create an AWS key pair, store the private key in a pem file in the directory 
+#    that the tf script is run from. 
+#    Generating a 3 digit random value to add to the file name to help 
+#    with dev of the script. 
 #
+resource "random_id" "getrandom" {
+  keepers = {
+    first = "$timestamp()}"
+  }
+  byte_length = 2
+}
+
+
 variable "generated_key_name" {
   type        = string
   default     = "terraform-key-pair"
@@ -20,12 +31,12 @@ resource "aws_key_pair" "generated_key" {
 
   provisioner "local-exec" {    # Generate "terraform-key-pair.pem" in current directory
     command = <<-EOT
-      echo '${tls_private_key.dev_key.private_key_pem}' > ./'${var.generated_key_name}'.pem
+      echo '${tls_private_key.dev_key.private_key_pem}' > ./'${var.generated_key_name}''${random_id.getrandom.hex}'.pem
       chmod 400 ./'${var.generated_key_name}'.pem
     EOT
   }
 }
 
-output "key_pair_file" {
-  value = "${var.generated_key_name}.pem"
-}
+#output "key_pair_file" {
+#  value = "${var.generated_key_name}${random_id.getrandom.hex}.pem"
+#}
