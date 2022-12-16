@@ -5,7 +5,7 @@ Dan Edeen, dan@dsblue.net, 2022
 ## Overview
 The functionality realized by these script sets is as follows: 
 *  Create (1) VPC in the AWS Region specified. 
-    * Two subnets (public and private)
+    * Three subnets (public, private with NATGW routes, and intra without NATGW routes)
     * NAT gateway for private subnet to Internet 
     * IGW for public subnet to Internet
     * EIP associated with IGW
