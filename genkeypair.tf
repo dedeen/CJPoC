@@ -3,6 +3,7 @@
 #    Generating a 4 digit random string to append to file name to distinguish 
 #    between multiple runs of the script. [key name format e.g. terraform-key-pair.1729 (and .pem on file)]
 #      --  Dan Edeen, dan@dsblue.net, 2022  --
+*/
 
 resource "random_id" "getrandom" {
   keepers = {
