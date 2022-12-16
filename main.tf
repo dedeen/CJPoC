@@ -28,3 +28,16 @@ module "vpc" {
     single_nat_gateway      = true  
 }
 
+	# Create EC2 Instances in our VPC/Subnets
+resource "aws_instance" "ec2-public-subnet" {
+    ami             	= "ami-094125af156557ca2"
+    instance_type   	= "t2.micro"
+    key_name        =	 "${aws_key_pair.generated_key.key_name}"
+    associate_public_ip_address = true
+    subnet_id           = module.vpc["datacenter1"].public_subnets[0]
+    source_dest_check   = false
+    tags = {
+          Owner = "dan-via-terraform"
+    }
+}
+	
