@@ -21,7 +21,19 @@ output "vpc_dc1-vpc_public_snet0" {
 output "vpc_dc1-vpc_intra_snet0" {
   value = module.vpc["datacenter1"].intra_subnets[0]
 }
-
+output "vpc_dc1-vpc_natgw_id" {
+  value = module.vpc["datacenter1"].natgw_ids
+}
+output "vpc_dc1-vpc_igw_id" {
+  value = module.vpc["datacenter1"].igw_id
+}
+output "vpc_dc1-vpc_igw_arn" {
+  value = module.vpc["datacenter1"].igw_arn
+}
+output "vpc_dc1-vpc_nat_public_ips" {
+  value = module.vpc["datacenter1"].nat_public_ips
+}
+/*
 #
 output "vpc_dc2-vpc_id" {
   value = module.vpc["datacenter2"].vpc_id
@@ -41,3 +53,4 @@ output "vpc_dc2-vpc_public_snet0" {
 output "vpc_dc2-vpc_intra_snet0" {
   value = module.vpc["datacenter2"].intra_subnets[0]
 }
+*/
