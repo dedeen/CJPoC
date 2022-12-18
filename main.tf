@@ -31,7 +31,7 @@ module "vpc" {
 # Create SecGrp to allow ICMP into attached subnet
 resource "aws_security_group" "allow_inbound_icmp" {
   name          = "allow_inbound_icmp"
-  description   = "ICMP inbound"
+  description   = "allow_inbound icmp"
   vpc_id        = module.vpc["datacenter1"].vpc_id
   ingress {
     description         = "ICMP inbound"
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow_inbound_icmp" {
     protocol            = "icmp"
   }
   tags = {
-    Name = "allow_inbnd_icmp"
+    Name = "allow_inbound_icmp"
     Owner = "dan-via-terraform"
   }
 }
@@ -49,17 +49,17 @@ resource "aws_security_group" "allow_inbound_icmp" {
 # Create SecGrp to allow all IPv4 traffic into attached subnet
 resource "aws_security_group" "allow_ipv4" {
   name                  = "allow_ipv4"
-  description           = "All inbound v4"
+  description           = "allow_ipv4"
   vpc_id                = module.vpc["datacenter1"].vpc_id
   ingress {
-    description         = "All inbound v4"
+    description         = "inbound v4"
     cidr_blocks         = ["0.0.0.0/0"]
     from_port           = 0
     to_port             = 0
     protocol            = "-1"
   }
   egress {
-    description         = "All outbound v4"
+    description         = "outbound v4"
     cidr_blocks         = ["0.0.0.0/0"]
     from_port           = 0
     to_port             = 0
@@ -95,7 +95,32 @@ resource "aws_security_group" "allow_ssh" {
     Owner = "dan-via-terraform"
   }
 }
-
+..
+# Create SecGrp to allow traffic from within the public and private subnets, blocked outside of these 
+resource "aws_security_group" "allow_intra_vpc" {
+  name                  = "allow_intra_vpc"
+  description           = "All inbound ssh"
+  vpc_id                = module.vpc["datacenter1"].vpc_id
+  ingress {
+    description         = "All inbound ssh"
+    cidr_blocks         = ["0.0.0.0/0"]
+    from_port           = 22
+    to_port             = 22
+    protocol            = "tcp"
+  }
+  egress {
+    description         = "All outbound v4"
+    cidr_blocks         = ["0.0.0.0/0"]
+    from_port           = 0
+    to_port             = 0
+    protocol            = "-1"
+  }
+  tags = {
+    Name = "allow_ssh"
+    Owner = "dan-via-terraform"
+  }
+}
+..
 # Create EC2 Instance(s) in the public subnet - allow inbound icmp and other ipv4
 resource "aws_instance" "ec2-public-subnet" {
     ami                                 = "ami-094125af156557ca2"
@@ -126,4 +151,19 @@ resource "aws_instance" "ec2-private-subnet" {
           Name  = "ec2-inst1-private"
     }
 }
- 
+
+# Create EC2 Instance(s) in the intra subnet 
+#    Only allowing traffic from the private subnet in this VPC
+resource "aws_instance" "ec2-intra-subnet" {
+    ami                                 = "ami-094125af156557ca2"
+    instance_type                       = "t2.micro"
+    key_name                            = "${aws_key_pair.generated_key.key_name}"
+    associate_public_ip_address         = false
+    subnet_id                           = module.vpc["datacenter1"].intra_subnets[0]
+    vpc_security_group_ids              = [aws_security_group.allow_ssh.id]
+    source_dest_check                   = false
+    tags = {
+          Owner = "dan-via-terraform"
+          Name  = "ec2-inst1-private"
+    }
+}
