@@ -119,7 +119,7 @@ resource "aws_instance" "ec2-private-subnet" {
     key_name                            = "${aws_key_pair.generated_key.key_name}"
     associate_public_ip_address         = false
     subnet_id                           = module.vpc["datacenter1"].private_subnets[0]
-    vpc_security_group_ids              = [aws_security_group.allow_ssh]
+    vpc_security_group_ids              = [aws_security_group.allow_ssh.id]
     source_dest_check                   = false
     tags = {
           Owner = "dan-via-terraform"
