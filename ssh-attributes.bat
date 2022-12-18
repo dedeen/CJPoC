@@ -7,6 +7,6 @@
 icacls terraform-key-pair.476d.pem /reset
 icacls terraform-key-pair.476d.pem /grant:r "$($env:Admin):(r)"
 :icacls terraform-key-pair.476d.pem /grant:r %username%:(R)
-icacls.exe terraform-key-pair.476d.pem /inheritance:r
+icacls terraform-key-pair.476d.pem /inheritance:r
 :
 :  Then ssh -i terraform-key-pair.476d.pem ec2-user@54.202.195.90
