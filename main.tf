@@ -102,14 +102,14 @@ resource "aws_security_group" "allow_intra_vpc" {
   description           = "All inbound ssh"
   vpc_id                = module.vpc["datacenter1"].vpc_id
   ingress {
-    description         = "All inbound ssh"
+    description         = "All intra vpc v4"
     cidr_blocks         = ["0.0.0.0/0"]
     from_port           = 22
     to_port             = 22
     protocol            = "tcp"
   }
   egress {
-    description         = "All outbound v4"
+    description         = "All intra vpc v4"
     cidr_blocks         = ["0.0.0.0/0"]
     from_port           = 0
     to_port             = 0
@@ -160,10 +160,10 @@ resource "aws_instance" "ec2-intra-subnet" {
     key_name                            = "${aws_key_pair.generated_key.key_name}"
     associate_public_ip_address         = false
     subnet_id                           = module.vpc["datacenter1"].intra_subnets[0]
-    vpc_security_group_ids              = [aws_security_group.allow_ssh.id]
+    vpc_security_group_ids              = [aws_security_group.allow_intra_vpc.id]
     source_dest_check                   = false
     tags = {
           Owner = "dan-via-terraform"
-          Name  = "ec2-inst1-private"
+          Name  = "ec2-inst1-intra"
     }
 }
