@@ -5,8 +5,8 @@
 :    listed here as an example. 
 :
 icacls terraform-key-pair.476d.pem /reset
-icacls terraform-key-pair.476d.pem /grant:r "$($env:Admin):(r)"
-:icacls terraform-key-pair.476d.pem /grant:r %username%:(R)
+icacls terraform-key-pair.476d.pem /grant:r %username%:(R)
 icacls terraform-key-pair.476d.pem /inheritance:r
 :
 :  Then ssh -i terraform-key-pair.476d.pem ec2-user@54.202.195.90
+:    with correct pem file name and instance IP address. 
