@@ -12,10 +12,20 @@ The functionality realized by these script sets is as follows:
     * Routing tables and assocations for VPC
     
 *  Generate AWS key pair (RSA), and download into the terraform execution directory. 
-    * File: terraform_key_pair.pem
-    * You must save this file to access resources built next. 
+    * File: terraform_key_pairNNNN.pem (NNNN = random string per run)
+    * You must save download this keypair.pem file to access the instances created next.  
     
-*  Create (1) EC2 in each subnet 
+*  Create security groups within the VPC.
+    * Allow ipv4 traffic to and from public subnet, plus inbound ICMP. 
+    * Allow ssh into private subnet from public subnet - ~bastion-like setup. 
+    * Allow traffic into intra subnet, only from other subnets in VPC.
+    
+*  Create (3) EC2s, one per subnet (public, private, intra)
+    * ec2-inst1-public
+    * ec2-inst1-private
+    * ec2-inst1-intra
+    
+    
 *  Create (1) API GW
 *  Create (1) RDS 
 *  Create a lambda function
