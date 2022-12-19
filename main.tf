@@ -99,7 +99,7 @@ resource "aws_security_group" "allow_ssh" {
 # Create SecGrp to allow traffic from within the public and private subnets, blocked outside of these 
 resource "aws_security_group" "allow_intra_vpc" {
   name                  = "allow_intra_vpc"
-  description           = "All inbound ssh"
+  description           = "All intra_vpc"
   vpc_id                = module.vpc["datacenter1"].vpc_id
   ingress {
     description         = "All intra vpc v4"
@@ -116,7 +116,7 @@ resource "aws_security_group" "allow_intra_vpc" {
     protocol            = "-1"
   }
   tags = {
-    Name = "allow_ssh"
+    Name = "allow_intra_vpc"
     Owner = "dan-via-terraform"
   }
 }
