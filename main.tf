@@ -212,11 +212,11 @@ resource "aws_instance" "ec2-intra-subnet" {
           Name  = "ec2-webserver1"
     }
     connection {
-            type        = "ssh"
-            user        = "ec2-user"
-            timeout     = "3m"
+            type        	= "ssh"
+            user        	= "ec2-user"
+            timeout     	= "5m"
             #private_key        = file(local.keypair_name)
-                private_key     = file("${path.module}/terraform-key-pair.5e53.pem")
+            private_key     	= "${tls_private_key.dev_key.private_key_pem}"
             host = aws_instance.ec2-webserver1.public_ip
     }
             
