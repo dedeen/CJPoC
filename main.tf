@@ -45,24 +45,33 @@ resource "aws_security_group" "allow_inbound_icmp" {
     Owner = "dan-via-terraform"
   }
 }
-xxxx
+
 resource "aws_security_group" "allow_inbound_http_https" {
   name          = "allow_inbound_http_https"
   description   = "allow_inbound_http_https"
   vpc_id        = module.vpc["datacenter1"].vpc_id
   ingress {
-    description         = "http https inbound"
+    description         = "http"
     cidr_blocks         = ["0.0.0.0/0"]
-    from_port           = 80,443
-    to_port             = 0 dje dje here 
+    from_port           = 80
+    to_port             = 80 
     protocol            = "tcp"
   }
+	  
+ingress {
+    description         = "https"
+    cidr_blocks         = ["0.0.0.0/0"]
+    from_port           = 443
+    to_port             = 443 
+    protocol            = "tcp"
+  }
+	  
   tags = {
     Name = "allow_inbound_http_https"
     Owner = "dan-via-terraform"
   }
 }
-xxxx
+
 # Create SecGrp to allow all IPv4 traffic into attached subnet
 resource "aws_security_group" "allow_ipv4" {
   name                  = "allow_ipv4"
