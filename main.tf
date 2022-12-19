@@ -211,15 +211,16 @@ resource "aws_instance" "ec2-webserver1" {
     connection {
 	    type	= "ssh"
 	    user	= "ec2-user"
-	    private_key	= file(local.keypair_name)
+	    #private_key	= file(local.keypair_name)
+	    private_key	= path.module.local.keypair_name)
 	    host = aws_instance.ec2-webserver1.public_ip
     }
 	    
    provisioner "remote-exec" {
 	   inline = ["sudo yum update -y", 
 		   "sudo amazon-linux-extras install php8.0 mariadb10.5 -y", 
-		   "sudo yum install -y httpd"
-		   "sudo systemctl start httpd"
+		   "sudo yum install -y httpd",
+		   "sudo systemctl start httpd",
 		   "sudo systemctl enable httpd"]
    }   
 }
