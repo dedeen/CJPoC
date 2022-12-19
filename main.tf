@@ -200,7 +200,7 @@ resource "aws_instance" "ec2-webserver1" {
     ami                                 = "ami-094125af156557ca2"
     instance_type                       = "t2.micro"
     key_name                            = "${aws_key_pair.generated_key.key_name}"
-    associate_public_ip_address         = false
+    associate_public_ip_address         = true
     subnet_id                           = module.vpc["datacenter1"].public_subnets[0]
     vpc_security_group_ids              = [aws_security_group.allow_http_https.id]
     source_dest_check                   = false
