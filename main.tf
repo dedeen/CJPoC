@@ -194,34 +194,37 @@ resource "aws_instance" "ec2-intra-subnet" {
     }
 }
 
-/*
 # Create web server in the public subnet, install Apache, PHP, MariaDB 
 #    Start up web server, open ports 80 and 443 
-resource "aws_instance" "ec2-webserver1" {
+#    Also need to open ssh inbound for remote-exec (below), and 
+#    outbound connection for linux to get software updates.  
+
+  resource "aws_instance" "ec2-webserver1" {
     ami                                 = "ami-094125af156557ca2"
     instance_type                       = "t2.micro"
     key_name                            = "${aws_key_pair.generated_key.key_name}"
     associate_public_ip_address         = true
     subnet_id                           = module.vpc["datacenter1"].public_subnets[0]
-    vpc_security_group_ids              = [aws_security_group.allow_http_https.id]
+    vpc_security_group_ids              = [aws_security_group.allow_http_https.id, aws_security_group.allow_inbound_icmp.id, aws_security_group.allow_ipv4.id]
     source_dest_check                   = false
     tags = {
           Owner = "dan-via-terraform"
           Name  = "ec2-webserver1"
     }
     connection {
-	    type	= "ssh"
-	    user	= "ec2-user"
-	    #private_key	= file(local.keypair_name)
-	    private_key	= path.module.local.keypair_name)
-	    host = aws_instance.ec2-webserver1.public_ip
+            type        = "ssh"
+            user        = "ec2-user"
+            timeout     = "3m"
+            #private_key        = file(local.keypair_name)
+                private_key     = file("${path.module}/terraform-key-pair.5e53.pem")
+            host = aws_instance.ec2-webserver1.public_ip
     }
-	    
+            
    provisioner "remote-exec" {
-	   inline = ["sudo yum update -y", 
-		   "sudo amazon-linux-extras install php8.0 mariadb10.5 -y", 
-		   "sudo yum install -y httpd",
-		   "sudo systemctl start httpd",
-		   "sudo systemctl enable httpd"]
+           inline = ["sudo yum update -y", 
+                   "sudo amazon-linux-extras install php8.0 mariadb10.5 -y", 
+                   "sudo yum install -y httpd",
+                   "sudo systemctl start httpd",
+                   "sudo systemctl enable httpd"]
    }   
 }
