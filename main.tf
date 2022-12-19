@@ -207,5 +207,16 @@ resource "aws_instance" "ec2-webserver1" {
     tags = {
           Owner = "dan-via-terraform"
           Name  = "ec2-webserver1"
+    connection {
+	    host = ec2-webserver
     }
+	    
+   provisioner "remote-exec" {
+	   inline = ["
+    
+    
+    }
+    
+	    
+	    
 }
