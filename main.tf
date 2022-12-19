@@ -46,9 +46,9 @@ resource "aws_security_group" "allow_inbound_icmp" {
   }
 }
 
-resource "aws_security_group" "allow_inbound_http_https" {
-  name          = "allow_inbound_http_https"
-  description   = "allow_inbound_http_https"
+resource "aws_security_group" "allow_http_https" {
+  name          = "allow_http_https"
+  description   = "allow_http_https"
   vpc_id        = module.vpc["datacenter1"].vpc_id
   ingress {
     description         = "http"
@@ -67,7 +67,7 @@ ingress {
   }
 	  
   tags = {
-    Name = "allow_inbound_http_https"
+    Name = "allow_http_https"
     Owner = "dan-via-terraform"
   }
 }
@@ -191,5 +191,21 @@ resource "aws_instance" "ec2-intra-subnet" {
     tags = {
           Owner = "dan-via-terraform"
           Name  = "ec2-inst1-intra"
+    }
+}
+
+# Create web server in the public subnet, install Apache, PHP, MariaDB 
+#    Start up web server, open ports 80 and 443 
+resource "aws_instance" "ec2-webserver1" {
+    ami                                 = "ami-094125af156557ca2"
+    instance_type                       = "t2.micro"
+    key_name                            = "${aws_key_pair.generated_key.key_name}"
+    associate_public_ip_address         = false
+    subnet_id                           = module.vpc["datacenter1"].public_subnets[0]
+    vpc_security_group_ids              = [aws_security_group.allow_http_https.id]
+    source_dest_check                   = false
+    tags = {
+          Owner = "dan-via-terraform"
+          Name  = "ec2-webserver1"
     }
 }
