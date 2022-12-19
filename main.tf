@@ -194,6 +194,7 @@ resource "aws_instance" "ec2-intra-subnet" {
     }
 }
 
+/*
 # Create web server in the public subnet, install Apache, PHP, MariaDB 
 #    Start up web server, open ports 80 and 443 
 resource "aws_instance" "ec2-webserver1" {
