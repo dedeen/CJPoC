@@ -212,11 +212,10 @@ resource "aws_instance" "ec2-webserver1" {
     }
 	    
    provisioner "remote-exec" {
-	   inline = ["
-    
-    
-    }
-    
-	    
-	    
+	   inline = ["sudo yum update -y", 
+		   "sudo amazon-linux-extras install php8.0 mariadb10.5 -y", 
+		   "sudo yum install -y httpd"
+		   "sudo systemctl start httpd"
+		   "sudo systemctl enable httpd"]
+   }   
 }
