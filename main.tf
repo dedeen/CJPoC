@@ -210,8 +210,8 @@ resource "aws_instance" "ec2-webserver1" {
     connection {
 	    type	= "ssh"
 	    user	= "ec2-user"
-	    private_key	= file(local.
-	    host = ec2-webserver
+	    private_key	= file(local.keypair_name)
+	    host = aws_instance.ec2-webserver1.public_ip
     }
 	    
    provisioner "remote-exec" {
