@@ -11,20 +11,25 @@ The functionality realized by these script sets is as follows:
     * EIP associated with IGW
     * Routing tables and assocations for VPC
     
-*  Generate AWS key pair (RSA), and download into the terraform execution directory. 
+*  Generate AWS key pair (RSA) and store as a file in terraform exec directory. 
     * File: terraform_key_pairNNNN.pem (NNNN = random string per run)
-    * You must save download this keypair.pem file to access the instances created next.  
+    * You must save this file file to access the instances created with this key pair.  
     
-*  Create security groups within the VPC.
+*  Create multiple security groups within the VPC.
     * Allow ipv4 traffic to and from public subnet, plus inbound ICMP. 
     * Allow ssh into private subnet from public subnet - ~bastion-like setup. 
     * Allow traffic into intra subnet, only from other subnets in VPC.
     
-*  Create (3) EC2s, one per subnet (public, private, intra)
+*  Create (3) linux EC2s, one per subnet (public, private, intra), using keypair for each. 
     * ec2-inst1-public
     * ec2-inst1-private
     * ec2-inst1-intra
-    
+
+ Create a linux-based webserver in the public subnet: ec2-webserver1, using the same keypair.
+    * Via secgrps, allow inbound ssh and icmp, plus outbound ipv4 (needed to install s/w on server)
+    * Update linux pkgs, install apache, php,  and mariadb - Terraform uses ssh to access 
+      web server using the aforementioned keypair. 
+    * Start httpd and configure to auto start via systemctl
     
 *  Create (1) API GW
 *  Create (1) RDS 
