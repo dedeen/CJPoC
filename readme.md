@@ -34,12 +34,10 @@ The functionality realized by these script sets is as follows:
 *  Create (1) API GW
 *  Create (1) RDS 
 *  Create a lambda function
-
+>> Work in progress <<
 ----------------------------------
 
-- fds
--   dsfsdf
--     dfdf
+
 ## Prerequisites
 There are a a few steps to set up the environment: 
 * Log in to your AWS environment and launch a CloudShell terminal window. 
@@ -62,11 +60,4 @@ AWS console or CLI to confirm. When you are finished you should delete the resou
 `$terraform destroy`
 
 You can confirm the resources have been deleted by again searching on the tags. 
-
-## Script Summaries
-### AWS_Query_Build_Resources_Basic ### 
-Build some basic resources in AWS: VPC, IGW, Public Subnet & Routes, and a few EC2s in the VPC. 
-
-### AWS_Query_Env ### 
-Retrieve setup, resources, summary of your EC2 environment. 
 
