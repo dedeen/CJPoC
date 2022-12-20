@@ -25,7 +25,7 @@ The functionality realized by these script sets is as follows:
     * ec2-inst1-private
     * ec2-inst1-intra
 
- Create a linux-based webserver in the public subnet: ec2-webserver1, using the same keypair.
+*  Create a linux-based webserver in the public subnet: ec2-webserver1, using the same keypair.
     * Via secgrps, allow inbound ssh and icmp, plus outbound ipv4 (needed to install s/w on server)
     * Update linux pkgs, install apache, php,  and mariadb - Terraform uses ssh to access 
       web server using the aforementioned keypair. 
