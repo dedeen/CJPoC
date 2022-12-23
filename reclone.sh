@@ -3,7 +3,6 @@
 #   put a new version from github
 # dan@dsblue.net  
 #
-# jq = JSON parser / wget = web file getter 
 
 git fetch 
 git reset --hard HEAD
