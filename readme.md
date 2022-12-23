@@ -32,10 +32,7 @@ The functionality realized by these script sets is as follows:
     * Start httpd and configure to auto start via systemctl
     * After launching, you will be able to access Apache test page on the webserver via the instance's public IP address. 
     
-*  Create (1) API GW
-*  Create (1) RDS 
-*  Create a lambda function
->> Work in progress <<
+
 ----------------------------------
 
 
